@@ -11,37 +11,21 @@ set -eu
 
 usage() {
 	cat <<'EOF'
-usage: heroglyph [-o FILE] [-p PALETTE] [-l] [-P] [-b BG] [-s SCALE] TEXT[:COLOR] ...
+usage: heroglyph [options] TEXT[:COLOR] ...
 
-  No -o        print ASCII block art to stdout (colors ignored)
-  -o FILE      write a PNG instead (needs ImageMagick's `magick`)
-  -p PALETTE   named palette: mini, spring, summer, autumn (default: summer)
-  -l           use the palette's light variant instead of dark
-  -P           write one PNG per built-in palette instead of just one
-               (needs -o; each is written as FILE-PALETTE.ext, for comparing)
-  -b COLOR     override just the background, hex
-  -s SCALE     PNG upscale factor per grid cell (default 15)
-  -h           show this help
+  -o FILE     write a PNG
+  -p PALETTE  summer, mini, spring, autumn
+  -l          light variant
+  -P          one PNG per palette
+  -b COLOR    background
+  -s SCALE    pixels per cell (default 15)
+  :COLOR      #hex, accent1 or accent2
+              o:accent splits a letter in two
+  .env        HEROGLYPH_PALETTE, HEROGLYPH_MODE
+              HEROGLYPH_BG/FG/ACCENT1/ACCENT2
 
-Each TEXT argument may carry its own :COLOR for -o mode; with no :COLOR it
-uses the active palette's fg. Multiple TEXT args are just concatenated — no
-gap is inserted, since every glyph already carries its own trailing blank
-column. Unsupported characters (only a-z0-9, "." and space exist) render blank.
-
-For a styled letter (see LETTER:COLOR1,COLOR2 below), :accent is shorthand
-for the active palette's own two accent colors.
-
-A .env file in the current directory is read for defaults (real values only,
-never executed): HEROGLYPH_PALETTE=name, HEROGLYPH_MODE=light, or
-HEROGLYPH_BG/FG/ACCENT1/ACCENT2=#hex for a fully custom palette. CLI flags
-win over .env.
-
-examples:
-  heroglyph "hello world"
-  heroglyph -o logo.png "BIG:#bfe3ff" "CAT:#dcd2a0"
-  heroglyph -o logo.png -p spring "her" "o:accent" "glyph"
-  heroglyph -o logo.png -p spring -l "her" "o:accent" "glyph"
-  heroglyph -o logo.png -P "her" "o:accent" "glyph"
+  heroglyph "hello"
+  heroglyph -o logo.png "hero:#E9B949" "glyph:#40B5AD"
 EOF
 }
 
