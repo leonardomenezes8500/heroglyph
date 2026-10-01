@@ -35,7 +35,7 @@ To add a letter: draw its 4x7 grid and add `font[ch,row]` entries. To add a two-
 
 A `.env` in the current directory sets defaults: `HEROGLYPH_PALETTE`, `HEROGLYPH_MODE=light`, or `HEROGLYPH_BG`/`FG`/`ACCENT1`/`ACCENT2`. `-p` beats `.env`; `-b` beats both.
 
-The repo's logos are made with heroglyph itself: `assets/logo.png` is `heroglyph -o assets/logo.png "hero:#E9B949" "glyph:#40B5AD"`, and the palette renders are `-P` and `-P -l` with `"hero:accent1" "glyph:accent2"` (run the plain `logo.png` command last, since `-P` doesn't touch it). `assets/example-mini-nvim.png` is a rendered check of the styled letter on mini.nvim's real colors (`mini:#B3DAF9 n:#A6E1E2,#B8E1C1 vim:#D9D8AA`).
+The repo's logos are made with heroglyph itself: `assets/logo.png` is `heroglyph -o assets/logo.png -p autumn "hero:accent1" "glyph"`, and the palette renders are `-P` and `-P -l` with `"hero:accent1" "glyph:accent2"` (run the plain `logo.png` command last, since `-P` doesn't touch it). `assets/example-mini-nvim.png` is a rendered check of the styled letter on mini.nvim's real colors (`mini:#B3DAF9 n:#A6E1E2,#B8E1C1 vim:#D9D8AA`).
 
 ## 4. Palettes
 
@@ -61,5 +61,5 @@ All values are real [mini.hues](https://github.com/nvim-mini/mini.nvim/blob/main
 4. **Default palette `summer`, not `mini`.** Why: with `mini` as the default the output looks like a reskin of the logo it copies. Ruled out: `mini` (too close to the source) and `autumn` (the first default).
 5. **Styled letters are hardcoded per letter.** Why: mini.nvim itself does this for one letter only (the "n" in its wordmark). Ruled out: a general rule that splits any letter.
 6. **`.env` parsed as plain `KEY=VALUE`, never sourced.** Why: a `.env` in an untrusted directory must not run code. Ruled out: `. ./.env`.
-7. **Logo split as hero / glyph, gold and turquoise.** Why: the two words of the name read at a glance, and gold plus turquoise faience are the colors of Egyptian hieroglyphs. The main logo uses its own hex instead of a palette. Ruled out: her-o-glyph with a styled middle `o` (carried over from pix-o-gram, hid the two words) and the palette accents (cyan and pink said nothing about the name).
+7. **Logo split as hero / glyph, on the `autumn` palette.** Why: the two words of the name read at a glance, and the user wanted purple from a built-in palette: lilac `accent1` for hero and cream `fg` for glyph on autumn's dark purple background. Ruled out: her-o-glyph with a styled middle `o` (carried over from pix-o-gram, hid the two words), gold and turquoise custom hex (not a built-in palette), all-lilac (the two words blur together) and autumn light (dark purple on gray read heavy).
 8. **Renamed pixogram to heroglyph (2026-10-01), no shim for `PIXOGRAM_*` keys.** Why: young tool, no known users outside the repo. Ruled out: reading both key sets.
