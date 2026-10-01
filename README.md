@@ -10,7 +10,7 @@ $ heroglyph "hello world"
 █ █ █   █   █   █ █     ███ █ █ █ █ █   █ █
 █ █ ███ ███ ███ ███     █ █ ███ █ █ ███ ██
 
-$ heroglyph -o logo.png "her:accent1" "o:accent" "glyph:accent2"
+$ heroglyph -o logo.png "hero:#E9B949" "glyph:#40B5AD"
 ```
 
 `heroglyph -h` lists every flag. Read [DESIGN.md](DESIGN.md) for how it works and [ROADMAP.md](ROADMAP.md) for the plan.
