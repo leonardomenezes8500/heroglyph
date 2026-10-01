@@ -1,4 +1,4 @@
-# pixogram
+# heroglyph
 
 figlet, but in mini.nvim's single-block pixel-art logo style. See README.md for what it does and how to use it. This file is build/design context, not user docs — keep the two from overlapping.
 
@@ -8,7 +8,7 @@ figlet, but in mini.nvim's single-block pixel-art logo style. See README.md for 
 
 ## How it's built
 
-Single POSIX `sh` file (`pixogram`), no external font — every glyph is a hand-authored 4x7 grid (`font[ch,row]` in the embedded `awk` program), transcribed pixel-by-pixel from `nvim-mini/assets` `logo-2/font/*.gif` (see README Credits). `awk` does layout/lookup since POSIX `sh` has no arrays; `magick` (ImageMagick 7) is only invoked for `-o` PNG output.
+Single POSIX `sh` file (`heroglyph`), no external font — every glyph is a hand-authored 4x7 grid (`font[ch,row]` in the embedded `awk` program), transcribed pixel-by-pixel from `nvim-mini/assets` `logo-2/font/*.gif` (see README Credits). `awk` does layout/lookup since POSIX `sh` has no arrays; `magick` (ImageMagick 7) is only invoked for `-o` PNG output.
 
 To add a letter: dump its real GIF (if extending from the same source) or hand-draw a 4x7 grid of `0`/`1` per row, add it as a `font[ch,row]` entry. To add a 2-color styled letter: add a `style[ch,row]` entry (which "on" pixels go to the 2nd color) — see `o` and `n` in the script for the pattern. Styled letters are hardcoded per-letter by design, not a general rule — mini.nvim itself only ever does this for one letter in its whole font.
 

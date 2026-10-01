@@ -4,11 +4,11 @@ BINDIR := $(PREFIX)/bin
 .PHONY: install uninstall test
 
 install:
-	install -Dm755 pixogram $(BINDIR)/pixogram
+	install -Dm755 heroglyph $(BINDIR)/heroglyph
 
 uninstall:
-	rm -f $(BINDIR)/pixogram
+	rm -f $(BINDIR)/heroglyph
 
 test:
-	dash -n pixogram
-	./pixogram "test" >/dev/null
+	dash -n heroglyph
+	./heroglyph "test" >/dev/null

@@ -1,9 +1,9 @@
-![pixogram](assets/logo.png)
+![heroglyph](assets/logo.png)
 
 figlet, but in the single-block pixel-art style of the [mini.nvim](https://github.com/nvim-mini/mini.nvim) logo: a 4x7 grid, no antialiasing, no font-hinting artifacts.
 
 ```
-$ pixogram "hello world"
+$ heroglyph "hello world"
 █ █ ███ █   █   ███     █ █ ███ ███ █   ██
 █ █ █   █   █   █ █     █ █ █ █ █ █ █   █ █
 ███ ██  █   █   █ █     ███ █ █ ██  █   █ █
@@ -14,7 +14,7 @@ $ pixogram "hello world"
 ## Usage
 
 ```
-pixogram [-o FILE] [-p PALETTE] [-l] [-P] [-b BG] [-s SCALE] TEXT[:COLOR] ...
+heroglyph [-o FILE] [-p PALETTE] [-l] [-P] [-b BG] [-s SCALE] TEXT[:COLOR] ...
 ```
 
 - No `-o`: prints ASCII block art to stdout (no color needed — good for a code comment).
@@ -26,8 +26,8 @@ pixogram [-o FILE] [-p PALETTE] [-l] [-P] [-b BG] [-s SCALE] TEXT[:COLOR] ...
 - Only `a-z`, `0-9`, `.` and space exist. Anything else renders blank. The `.` comes from `font/prefix.gif`, the "MINI." at the start of every mini.nvim logo, since it has no glyph file of its own.
 
 ```
-pixogram -o logo.png "pix:accent1" "o:accent" "gram:accent2"
-pixogram -o logo.png -p spring -l "pix:accent1" "o:accent" "gram:accent2"
+heroglyph -o logo.png "her:accent1" "o:accent" "glyph:accent2"
+heroglyph -o logo.png -p spring -l "her:accent1" "o:accent" "glyph:accent2"
 ```
 
 ### Palettes
@@ -39,7 +39,7 @@ pixogram -o logo.png -p spring -l "pix:accent1" "o:accent" "gram:accent2"
 | `spring` | `#1C2617` | `#D8DA9D` | `#ABE5BE` `#F7C2EA`  |
 | `mini`   | `#00182A` | `#D9D8AA` | `#A6E1E2` `#B8E1C1`  |
 
-Real [mini.hues](https://github.com/nvim-mini/mini.nvim) colors, not invented — see [Credits](#credits). `mini` is the actual mini.nvim logo palette; it's not the default so pixogram doesn't just look like a reskin.
+Real [mini.hues](https://github.com/nvim-mini/mini.nvim) colors, not invented — see [Credits](#credits). `mini` is the actual mini.nvim logo palette; it's not the default so heroglyph doesn't just look like a reskin.
 
 ### Styled letter
 
@@ -47,12 +47,12 @@ Real [mini.hues](https://github.com/nvim-mini/mini.nvim) colors, not invented �
 
 ### Project defaults (`.env`)
 
-A `.env` file in the current directory is read for defaults — plain `KEY=VALUE`, never executed: `PIXOGRAM_PALETTE`, `PIXOGRAM_MODE=light`, or a fully custom `PIXOGRAM_BG`/`FG`/`ACCENT1`/`ACCENT2`. CLI flags win over `.env`.
+A `.env` file in the current directory is read for defaults — plain `KEY=VALUE`, never executed: `HEROGLYPH_PALETTE`, `HEROGLYPH_MODE=light`, or a fully custom `HEROGLYPH_BG`/`FG`/`ACCENT1`/`ACCENT2`. CLI flags win over `.env`.
 
 ## Install
 
 ```
-make install               # installs to ~/.local/bin/pixogram
+make install               # installs to ~/.local/bin/heroglyph
 make install PREFIX=/usr   # or another prefix
 make uninstall
 ```

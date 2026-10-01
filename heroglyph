@@ -1,5 +1,5 @@
 #!/bin/sh
-# pixogram — figlet-like pixel-art text, mini.nvim logo style: 4x7 blocky
+# heroglyph — figlet-like pixel-art text, mini.nvim logo style: 4x7 blocky
 # glyphs, no antialiasing, no font hinting artifacts. Prints ASCII block art
 # to stdout, or (with -o) a colored PNG via ImageMagick.
 #
@@ -11,7 +11,7 @@ set -eu
 
 usage() {
 	cat <<'EOF'
-usage: pixogram [-o FILE] [-p PALETTE] [-l] [-P] [-b BG] [-s SCALE] TEXT[:COLOR] ...
+usage: heroglyph [-o FILE] [-p PALETTE] [-l] [-P] [-b BG] [-s SCALE] TEXT[:COLOR] ...
 
   No -o        print ASCII block art to stdout (colors ignored)
   -o FILE      write a PNG instead (needs ImageMagick's `magick`)
@@ -32,16 +32,16 @@ For a styled letter (see LETTER:COLOR1,COLOR2 below), :accent is shorthand
 for the active palette's own two accent colors.
 
 A .env file in the current directory is read for defaults (real values only,
-never executed): PIXOGRAM_PALETTE=name, PIXOGRAM_MODE=light, or
-PIXOGRAM_BG/FG/ACCENT1/ACCENT2=#hex for a fully custom palette. CLI flags
+never executed): HEROGLYPH_PALETTE=name, HEROGLYPH_MODE=light, or
+HEROGLYPH_BG/FG/ACCENT1/ACCENT2=#hex for a fully custom palette. CLI flags
 win over .env.
 
 examples:
-  pixogram "hello world"
-  pixogram -o logo.png "TRACK:#bfe3ff" "EC:#dcd2a0"
-  pixogram -o logo.png -p spring "pix" "o:accent" "gram"
-  pixogram -o logo.png -p spring -l "pix" "o:accent" "gram"
-  pixogram -o logo.png -P "pix" "o:accent" "gram"
+  heroglyph "hello world"
+  heroglyph -o logo.png "BIG:#bfe3ff" "CAT:#dcd2a0"
+  heroglyph -o logo.png -p spring "her" "o:accent" "glyph"
+  heroglyph -o logo.png -p spring -l "her" "o:accent" "glyph"
+  heroglyph -o logo.png -P "her" "o:accent" "glyph"
 EOF
 }
 
@@ -67,7 +67,7 @@ resolve_palette() {
 	autumn:dark) base_bg="#262029" base_fg="#EFCFAB" base_a1="#F1C6E2" base_a2="#B4E2C7" ;;
 	autumn:light) base_bg="#E5E1E7" base_fg="#2F2E29" base_a1="#52073F" base_a2="#005E3D" ;;
 	*)
-		echo "pixogram: unknown palette '$1' (mini, spring, summer, autumn)" >&2
+		echo "heroglyph: unknown palette '$1' (mini, spring, summer, autumn)" >&2
 		exit 1
 		;;
 	esac
@@ -368,7 +368,7 @@ BEGIN {
 	# top bridge + right leg the other. Transcribed from font/n-neovim.gif.
 	# Their actual colors there are cyan #A6E1E2 (left leg) and green
 	# #B8E1C1 (bridge+right leg) — not the MINI./VIM blue or tan.
-	# e.g.: pixogram -o logo.png "mini.:#B3DAF9" "n:#A6E1E2,#B8E1C1" "vim:#D9D8AA"
+	# e.g.: heroglyph -o logo.png "mini.:#B3DAF9" "n:#A6E1E2,#B8E1C1" "vim:#D9D8AA"
 	style["n",1] = "1100"
 	style["n",2] = "0010"
 	style["n",3] = "0010"
@@ -509,12 +509,12 @@ scale=15
 if [ -f .env ]; then
 	while IFS='=' read -r k v; do
 		case "$k" in
-		PIXOGRAM_PALETTE) env_palette="$v" ;;
-		PIXOGRAM_MODE) env_mode="$v" ;;
-		PIXOGRAM_BG) env_bg="$v" ;;
-		PIXOGRAM_FG) env_fg="$v" ;;
-		PIXOGRAM_ACCENT1) env_a1="$v" ;;
-		PIXOGRAM_ACCENT2) env_a2="$v" ;;
+		HEROGLYPH_PALETTE) env_palette="$v" ;;
+		HEROGLYPH_MODE) env_mode="$v" ;;
+		HEROGLYPH_BG) env_bg="$v" ;;
+		HEROGLYPH_FG) env_fg="$v" ;;
+		HEROGLYPH_ACCENT1) env_a1="$v" ;;
+		HEROGLYPH_ACCENT2) env_a2="$v" ;;
 		esac
 	done <.env
 fi
@@ -565,7 +565,7 @@ if [ -z "$outfile" ]; then
 fi
 
 command -v magick >/dev/null 2>&1 || {
-	echo "pixogram: -o needs ImageMagick's 'magick' on PATH" >&2
+	echo "heroglyph: -o needs ImageMagick's 'magick' on PATH" >&2
 	exit 1
 }
 

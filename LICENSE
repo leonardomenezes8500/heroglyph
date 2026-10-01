@@ -22,7 +22,7 @@ SOFTWARE.
 
 ---
 
-The pixel-font grid data in `pixogram` (the per-letter 4x7 shapes and default
+The pixel-font grid data in `heroglyph` (the per-letter 4x7 shapes and default
 colors) is transcribed from nvim-mini/assets (logo-2/font/*.gif), also MIT
 Licensed:
 
